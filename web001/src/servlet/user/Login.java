@@ -43,11 +43,11 @@ public class Login extends HttpServlet {
 		String userid = request.getParameter("userid");
 		String password = request.getParameter("password");
 		if( userid == null || "".equals(userid)){
-			request.setAttribute("errorinfo", "ÓÃ»§id²»ÄÜÎª¿Õ");          // ÉèÖÃ´íÎóÊôĞÔ
+			request.setAttribute("errorinfo", "ç”¨æˆ·idä¸èƒ½ä¸ºç©º");         
 			request.getRequestDispatcher("adm_editcourse.jsp").forward(request, response);
 		}
 		if( password == null || "".equals(password)){
-			request.setAttribute("errorinfo", "ÃÜÂë²»ÄÜÎª¿Õ");          // ÉèÖÃ´íÎóÊôĞÔ
+			request.setAttribute("errorinfo", "å¯†ç ä¸èƒ½ä¸ºç©º");         
 			request.getRequestDispatcher("adm_editcourse.jsp").forward(request, response);
 		}
 		
@@ -57,7 +57,7 @@ public class Login extends HttpServlet {
 		user.setUserType(Integer.valueOf(request.getParameter("usertype")));
 		StringBuffer info = new StringBuffer();
 		if(userservice.login()){
-			info.append("µÇÂ½³É¹¦");
+			info.append("ç™»é™†æˆåŠŸ");
 			int type = Integer.valueOf(request.getParameter("usertype"));
 			switch(type){
 			case 1:
@@ -65,13 +65,15 @@ public class Login extends HttpServlet {
 				response.sendRedirect("administrator.jsp");
 				break;
 			case 2:
-				
+				request.getSession().setAttribute("user", user);
+				response.sendRedirect("administrator.jsp");
 			case 3:
-				
+				request.getSession().setAttribute("user", user);
+				response.sendRedirect("administrator.jsp");
 				
 			}
 		}else{
-			info.append("µÇÁ¼Ê§°Ü");
+			info.append("ç™»é™†å¤±è´¥");
 			request.setAttribute("info", info);
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 		}

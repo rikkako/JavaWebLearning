@@ -59,7 +59,7 @@ public class AddCourse extends HttpServlet {
 			CourseServiceImpl couservice = new CourseServiceImpl();
 			String info = "";
 			if(couservice.addCourse(cou)){
-				info = "添加成功";
+				info = "添加成功！";
 			} else {
 				info = "添加失败课程id冲突！";
 			}

@@ -10,7 +10,7 @@
 <form action="Login" name="login">
     <p>userId:<input type="text" name="userid"></p>
     <p>password:<input type="password" name="password"></p>
-    <select>     
+    <select name="usertype">     
     <option value="0">-请选择-</option>     
     <option value="1">管理员</option>     
     <option value="2">教师</option>  

@@ -44,11 +44,11 @@ public class UpdateCourse extends HttpServlet {
 		if(request.getParameter("course")=="" || request.getParameter("course_id") == "" || request.getParameter("teacher")==""
 				|| request.getParameter("classroom")=="" ||request.getParameter("lesson")=="" || request.getParameter("credit")==""
 				|| request.getParameter("max_num")=="" ){
-			request.setAttribute("adderror", "¿Î³ÌĞÅÏ¢²»ÄÜÎª¿Õ");          // ÉèÖÃ´íÎóÊôĞÔ
+			request.setAttribute("adderror", "è¯¾ç¨‹ä¿¡æ¯ä¸èƒ½ä¸ºç©º");          
 			request.getRequestDispatcher("adm_editcourse.jsp").forward(request, response);
 		}
 		else{
-			//Í¨¹ırequest»ñÈ¡form±íµ¥ÖĞµÄÊäÈëÊı¾İ
+		
 //			int id = Integer.parseInt(request.getParameter("course_id"));
 			CourseServiceImpl couservice = new CourseServiceImpl();
 			cou.setCourseName(request.getParameter("course"));
@@ -60,12 +60,12 @@ public class UpdateCourse extends HttpServlet {
 			cou.setMaxNum(Integer.parseInt(request.getParameter("max_num")));
 			String info = "";
 			if(couservice.updateCourse(cou)){
-				info = "ĞŞ¸Ä³É¹¦£¡";
+				info = "ä¿®æ”¹æˆåŠŸï¼";
 			} else {
-				info = "ĞŞ¸ÄÊ§°Ü£¡";
+				info = "ä¿®æ”¹å¤±è´¥ï¼";
 			}
 			request.setAttribute("info", info);
-			request.getRequestDispatcher("adm_editcourse.jsp").forward(request, response);
+			request.getRequestDispatcher("FindCourse").forward(request, response);
 		}
 	}
 

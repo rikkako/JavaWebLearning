@@ -73,6 +73,16 @@ window.location= 'adm_addcourse.jsp' ;
 }
 %>
 
+<%
+if(Info == "修改成功！") {
+%>
+<script type="text/javascript" language="javascript">
+alert("<%=Info%>");                                            //弹出消息
+window.location= 'FindCourse' ;                           
+</script>	
+<%
+}
+%>
 
 </body>
 
