@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.CourseMapper">   <!-- 命名空间，名字可以随意起，只要不冲突即可 -->
+    <!-- 对象映射，可以不写 -->
+    
+    <!-- 查询功能，resultType 设置返回值类型 -->
+    <select id="findCourseList" resultType="model.Course">  <!-- 书写 SQL 语句 -->
+        SELECT 
+            * 
+        FROM 
+            course_table
+    </select>
+    
+    <select id="findCourseById" parameterType="int" resultType="model.Course">
+        SELECT * 
+        FROM 
+            course_table 
+        WHERE 
+            courseid = #{id}
+    </select>
+    
+    <!-- 添加课程 -->
+    <insert id="addCourse" parameterType="model.Course">
+        INSERT INTO 
+            course_table(coursename,courseid,teacher,classroom,lesson,credit,maxnum) 
+        VALUES
+        (#{courseName},#{courseId},#{teacher},#{classRoom},#{lesson},#{credit},#{maxNum})
+    </insert>
+    
+    <!-- 修改课程 -->
+    <update id="updateCourse" parameterType="model.Course">
+        UPDATE course_table SET 
+            coursename=#{coursename},
+            teacher=#{teacher},
+            classroom=#{classroom},
+            lesson=#{lesson},
+            credit=#{credit},
+            maxnum=#{maxnum} 
+        WHERE 
+            courseid=#{courseid}
+    </update>
+    
+    <!-- 删除课程 -->
+    <delete id="deleteCourse" parameterType="integer">
+        DELETE 
+        FROM 
+            course_table 
+        WHERE 
+            courseid=#{courseid}
+    </delete>
+</mapper>

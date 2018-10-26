@@ -1,5 +1,7 @@
-/Filter/
+/SqlMapConfig.xml
+/Mapper/
+/mapper/
 /dao/
-/model/
+/mybatis-config.xml
 /service/
-/servlet/
+/ation/

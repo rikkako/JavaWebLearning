@@ -1,4 +1,4 @@
-package servlet.course;
+package ation.course;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

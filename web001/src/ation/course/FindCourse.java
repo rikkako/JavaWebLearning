@@ -1,4 +1,4 @@
-package servlet.course;
+package ation.course;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -11,16 +11,16 @@ import service.CourseServiceImpl;
 
 
 /**
- * Servlet implementation class deleteCourse
+ * Servlet implementation class FindCourse
  */
-@WebServlet("/DeleteCourse")
-public class DeleteCourse extends HttpServlet {
+@WebServlet("/FindCourse")
+public class FindCourse extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteCourse() {
+    public FindCourse() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,7 +32,6 @@ public class DeleteCourse extends HttpServlet {
 		// TODO Auto-generated method stub
 		doPost(request, response);
 	}
-		
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -40,16 +39,17 @@ public class DeleteCourse extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		int id = Integer.valueOf(request.getParameter("id"));
-		CourseServiceImpl couService = new CourseServiceImpl();
-		String info = "";
-		if(couService.deleteCourseById(id)){
-			info = "删除成功！";
-		}else{
-			info = "删除失败！";
+		CourseServiceImpl couservice = new CourseServiceImpl();    
+		//更新添加没有课程时跳出提醒去添加课程
+		if(couservice.findCourseList() == null){
+			String info = "现在还没有课程，请添加课程";
+			request.setAttribute("info", info);
+			request.getRequestDispatcher("adm_findcourse.jsp").forward(request, response);
 		}
-		request.setAttribute("info", info);
-		request.getRequestDispatcher("adm_findcourse.jsp").forward(request, response);
+	
+		request.setAttribute("courseList",couservice.findCourseList());	
+		request.getRequestDispatcher("adm_findcourse.jsp").forward(request, response); //转发到adm_findcourse.jsp
+
 	}
 
 }
