@@ -39,16 +39,17 @@ public class FindCourse extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		CourseServiceImpl couservice = new CourseServiceImpl();    //ÊµÀı»¯Ñ§ÉúÒµÎñ²Ù×÷
-		//¸üĞÂÌí¼ÓÃ»ÓĞ¿Î³ÌÊ±Ìø³öÌáĞÑÈ¥Ìí¼Ó¿Î³Ì
+		CourseServiceImpl couservice = new CourseServiceImpl();    
+		//æ›´æ–°æ·»åŠ æ²¡æœ‰è¯¾ç¨‹æ—¶è·³å‡ºæé†’å»æ·»åŠ è¯¾ç¨‹
 		if(couservice.findCourseList() == null){
-			String info = "ÏÖÔÚ»¹Ã»ÓĞ¿Î³Ì£¬ÇëÌí¼Ó¿Î³Ì";
+			String info = "ç°åœ¨è¿˜æ²¡æœ‰è¯¾ç¨‹ï¼Œè¯·æ·»åŠ è¯¾ç¨‹";
 			request.setAttribute("info", info);
 			request.getRequestDispatcher("adm_findcourse.jsp").forward(request, response);
 		}
-		////»ñÈ¡Ñ§ÉúĞÅÏ¢£¬Ìí¼Óµ½requestÓòÖĞ
+	
 		request.setAttribute("courseList",couservice.findCourseList());	
-		request.getRequestDispatcher("adm_findcourse.jsp").forward(request, response); //×ª·¢µ½adm_findcourse.jsp
+		request.getRequestDispatcher("adm_findcourse.jsp").forward(request, response); //è½¬å‘åˆ°adm_findcourse.jsp
+
 	}
 
 }

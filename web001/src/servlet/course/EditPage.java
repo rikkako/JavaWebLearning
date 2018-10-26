@@ -40,9 +40,11 @@ public class EditPage extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		int id = Integer.valueOf(request.getParameter("id"));
-		CourseServiceImpl couservice = new CourseServiceImpl();    //实例化学生业务操作
-		request.setAttribute("course",couservice.findCourseById(id));	//获取学生信息，添加到request域中
-		request.getRequestDispatcher("adm_editcourse.jsp").forward(request, response); //转发到adm_findcourse.jsp
+		CourseServiceImpl couservice = new CourseServiceImpl();    
+		request.setAttribute("course",couservice.findCourseById(id));	//鑾峰彇瀛︾敓淇℃伅锛屾坊鍔犲埌request鍩熶腑
+
+		request.getRequestDispatcher("adm_editcourse.jsp").forward(request, response); //杞彂鍒癮dm_findcourse.jsp
+
 	}
 
 }

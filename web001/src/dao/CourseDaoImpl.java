@@ -31,7 +31,7 @@ public class CourseDaoImpl implements CourseDao {
 			statement.setInt   (6, course.getCredit());
 			statement.setInt   (7, course.getMaxNum());
 			
-			int rs = statement.executeUpdate();       //受影响行数（更新计数）
+			int rs = statement.executeUpdate();      
 			if(rs>0){
 				return true;
 			}
@@ -47,11 +47,11 @@ public class CourseDaoImpl implements CourseDao {
 		// TODO Auto-generated method stub
 		
 		List<Course> listCou = new ArrayList<Course>();
-		String sql ="SELECT * FROM course_table";         //定义SQL语句
+		String sql ="SELECT * FROM course_table";        
 		try {
 			statement=connection.prepareStatement(sql);
-			ResultSet rs =statement.executeQuery();	             //执行SQL语句并取得结果集
-			while (rs.next()) {	                          //遍历结果集
+			ResultSet rs =statement.executeQuery();	            
+			while (rs.next()) {	                          
 				Course course = new Course();
 				
 				course.setCourseName(rs.getString("coursename"));
@@ -62,7 +62,7 @@ public class CourseDaoImpl implements CourseDao {
 				course.setCredit(rs.getInt("credit"));
 				course.setMaxNum(rs.getInt("maxnum"));
 			
-				listCou.add(course);	//封装对象添加到List中
+				listCou.add(course);	
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -76,14 +76,13 @@ public class CourseDaoImpl implements CourseDao {
 	
 public Course findCourseById(int id) {
 		
-		// TODO 自动生成的方法存根
 		Course course = null;
 		String sql ="SELECT * FROM course_table where courseid=?"; 
 		try {
 			statement = connection.prepareStatement(sql);
 			statement.setInt(1, id); 
 			ResultSet rs = statement.executeQuery();
-			while (rs.next()) {	                          //遍历结果集
+			while (rs.next()) {	                         
 				course = new Course();
 				course.setCourseName(rs.getString("coursename"));
 				course.setCourseId(rs.getInt("courseid"));
@@ -100,7 +99,6 @@ public Course findCourseById(int id) {
 	}
 	
 	public boolean deleteCourseById(int id) {
-		// TODO 自动生成的方法存根
 		
 		String sql ="delete from course_table where courseid=?";
 		try {
@@ -118,7 +116,6 @@ public Course findCourseById(int id) {
 	
 	
 	public boolean updateCourse(Course course) {
-		// TODO 自动生成的方法存根
 		
 		String sql ="update course_table set coursename=?,teacher=?,classroom=?,lesson=?,credit=?,maxnum=? where courseid=?";
 		
@@ -131,12 +128,12 @@ public Course findCourseById(int id) {
 			statement.setInt(5, course.getCredit());
 			statement.setInt(6, course.getMaxNum());
 			statement.setInt(7, course.getCourseId());
-			int rs = statement.executeUpdate();       //受影响行数（更新计数）
+			int rs = statement.executeUpdate();       
 			if(rs>0){
 				return true;
 			}
 		} catch (SQLException e) {
-			// TODO 自动生成的 catch 块
+			// TODO 锟皆讹拷锟斤拷锟缴碉拷 catch 锟斤拷
 			e.printStackTrace();
 		}
 		return false;

@@ -1,16 +1,8 @@
 package model;
 
 public class Course {
-	/*
-	 *<th>课程</th>        
-	  <th>课程ID</th>          
-	  <th>任课老师</th>
-	  <th>上课地点</th>          
-	  <th>课时</th>         
-	  <th>学分</th>
-	  <th>最大人数</th>
-	  <th>操作</th> 
-	  */
+
+	
 	private String courseName;
 	private int    courseId;
 	private String teacher;

@@ -39,15 +39,15 @@ public class AddCourse extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("utf-8");
-		Course cou = new Course();   //ÊµÀı»¯Ò»¸ö¿Î³Ì¶ÔÏó
+		Course cou = new Course();   
 		if(request.getParameter("course")=="" || request.getParameter("course_id") == "" || request.getParameter("teacher")==""
 				|| request.getParameter("classroom")=="" ||request.getParameter("lesson")=="" || request.getParameter("credit")==""
 				|| request.getParameter("max_num")=="" ){
-			request.setAttribute("adderror", "Ìí¼ÓÊ§°Ü£¬¿Î³ÌĞÅÏ¢²»ÄÜÎª¿Õ");          // ÉèÖÃ´íÎóÊôĞÔ
+			request.setAttribute("adderror", "æ·»åŠ å¤±è´¥ï¼Œè¯¾ç¨‹ä¿¡æ¯ä¸èƒ½ä¸ºç©º");       
 			request.getRequestDispatcher("adm_addcourse.jsp").forward(request, response);
 		}
 		else{
-			//Í¨¹ırequest»ñÈ¡form±íµ¥ÖĞµÄÊäÈëÊı¾İ
+			//é€šè¿‡requestè·å–formè¡¨å•ä¸­çš„è¾“å…¥æ•°æ®
 			cou.setCourseName(request.getParameter("course"));
 			cou.setCourseId(Integer.parseInt(request.getParameter("course_id")));
 			cou.setTeacher(request.getParameter("teacher"));
@@ -59,9 +59,9 @@ public class AddCourse extends HttpServlet {
 			CourseServiceImpl couservice = new CourseServiceImpl();
 			String info = "";
 			if(couservice.addCourse(cou)){
-				info = "Ìí¼Ó³É¹¦£¡";
+				info = "æ·»åŠ æˆåŠŸ";
 			} else {
-				info = "Ìí¼ÓÊ§°Ü¿Î³Ìid³åÍ»£¡";
+				info = "æ·»åŠ å¤±è´¥è¯¾ç¨‹idå†²çªï¼";
 			}
 			request.setAttribute("info", info);
 			request.getRequestDispatcher("adm_addcourse.jsp").forward(request, response);

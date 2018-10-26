@@ -44,9 +44,9 @@ public class DeleteCourse extends HttpServlet {
 		CourseServiceImpl couService = new CourseServiceImpl();
 		String info = "";
 		if(couService.deleteCourseById(id)){
-			info = "É¾³ı³É¹¦£¡";
+			info = "åˆ é™¤æˆåŠŸï¼";
 		}else{
-			info = "É¾³ıÊ§°Ü£¡";
+			info = "åˆ é™¤å¤±è´¥ï¼";
 		}
 		request.setAttribute("info", info);
 		request.getRequestDispatcher("adm_findcourse.jsp").forward(request, response);

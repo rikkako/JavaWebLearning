@@ -13,19 +13,19 @@ public class UserDaoImpl implements UserDao {
 	
 	@Override
 	public boolean register() {
-		// TODO 自动生成的方法存根
+		
 		return false;
 	}
 
 	@Override
 	public User findUserName(int id) {
-		// TODO 自动生成的方法存根
+		
 		return null;
 	}
 
 	@Override
 	public boolean login() {
-		// TODO 自动生成的方法存根
+		
 		
 		User user = new User();
 		return false;
@@ -33,7 +33,7 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public boolean changePassword() {
-		// TODO 自动生成的方法存根
+		
 		return false;
 	}
 
