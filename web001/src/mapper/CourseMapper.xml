@@ -14,8 +14,9 @@
             course_table
     </select>
     
-    <select id="findCourseById" parameterType="int" resultType="model.Course">
-        SELECT * 
+    <select id="findCourseById" parameterType="int" resultType="model.Course" >
+        SELECT 
+            * 
         FROM 
             course_table 
         WHERE 
@@ -33,14 +34,14 @@
     <!-- 修改课程 -->
     <update id="updateCourse" parameterType="model.Course">
         UPDATE course_table SET 
-            course_name=#{courseName},
-            teacher=#{teacher},
-            classroom=#{classRoom},
-            lesson=#{lesson},
-            credit=#{credit},
-            max_num=#{maxNum} 
+            course_name = #{courseName},
+            teacher     = #{teacher},
+            classroom   = #{classRoom},
+            lesson      = #{lesson},
+            credit      = #{credit},
+            max_num     = #{maxNum} 
         WHERE 
-            course_id=#{courseId}
+            course_id = #{courseId}
     </update>
     
     <!-- 删除课程 -->
@@ -49,6 +50,6 @@
         FROM 
             course_table 
         WHERE 
-            course_id=#{courseId}
+            course_id = #{courseId}
     </delete>
 </mapper>
