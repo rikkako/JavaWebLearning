@@ -5,7 +5,7 @@
 
 <mapper namespace="mapper.CourseMapper">   
     <!-- 对象映射，可以不写 -->
-    
+       
     <!-- 查询功能，resultType 设置返回值类型 -->
     <select id="findCourseList" resultType="model.Course">  <!-- 书写 SQL 语句 -->
         SELECT 
@@ -19,13 +19,13 @@
         FROM 
             course_table 
         WHERE 
-            courseid = #{id}
+            course_id = #{id}
     </select>
     
     <!-- 添加课程 -->
     <insert id="addCourse" parameterType="model.Course">
         INSERT INTO 
-            course_table(coursename,courseid,teacher,classroom,lesson,credit,maxnum) 
+            course_table(course_name,course_id,teacher,classroom,lesson,credit,max_num) 
         VALUES
         (#{courseName},#{courseId},#{teacher},#{classRoom},#{lesson},#{credit},#{maxNum})
     </insert>
@@ -33,14 +33,14 @@
     <!-- 修改课程 -->
     <update id="updateCourse" parameterType="model.Course">
         UPDATE course_table SET 
-            coursename=#{courseName},
+            course_name=#{courseName},
             teacher=#{teacher},
             classroom=#{classRoom},
             lesson=#{lesson},
             credit=#{credit},
-            maxnum=#{maxNum} 
+            max_num=#{maxNum} 
         WHERE 
-            courseid=#{courseId}
+            course_id=#{courseId}
     </update>
     
     <!-- 删除课程 -->
@@ -49,6 +49,6 @@
         FROM 
             course_table 
         WHERE 
-            courseid=#{courseId}
+            course_id=#{courseId}
     </delete>
 </mapper>

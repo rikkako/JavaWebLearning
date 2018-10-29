@@ -9,7 +9,7 @@ public class UserServiceImpl implements UserService {
 		return false;
 	}
 
-	public User findUserName(int id) {
+	public User findUser(int id) {
 
 		return null;
 	}

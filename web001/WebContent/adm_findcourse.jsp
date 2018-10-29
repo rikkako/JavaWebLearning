@@ -83,10 +83,5 @@ window.location= 'FindCourse' ;
 <%
 }
 %>
-
 </body>
-
-
-
-
 </html>
