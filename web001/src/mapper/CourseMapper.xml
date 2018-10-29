@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="mapper.CourseMapper">   <!-- 命名空间，名字可以随意起，只要不冲突即可 -->
+<mapper namespace="mapper.CourseMapper">   
     <!-- 对象映射，可以不写 -->
     
     <!-- 查询功能，resultType 设置返回值类型 -->
@@ -33,22 +33,22 @@
     <!-- 修改课程 -->
     <update id="updateCourse" parameterType="model.Course">
         UPDATE course_table SET 
-            coursename=#{coursename},
+            coursename=#{courseName},
             teacher=#{teacher},
-            classroom=#{classroom},
+            classroom=#{classRoom},
             lesson=#{lesson},
             credit=#{credit},
-            maxnum=#{maxnum} 
+            maxnum=#{maxNum} 
         WHERE 
-            courseid=#{courseid}
+            courseid=#{courseId}
     </update>
     
     <!-- 删除课程 -->
-    <delete id="deleteCourse" parameterType="integer">
+    <delete id="deleteCourseById" parameterType="integer">
         DELETE 
         FROM 
             course_table 
         WHERE 
-            courseid=#{courseid}
+            courseid=#{courseId}
     </delete>
 </mapper>

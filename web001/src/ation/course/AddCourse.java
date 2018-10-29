@@ -1,20 +1,12 @@
 package ation.course;
 
 import java.io.IOException;
-import java.io.Reader;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-
-import mapper.CourseMapper;
 import model.Course;
 import service.CourseServiceImpl;
 
@@ -64,30 +56,10 @@ public class AddCourse extends HttpServlet {
 			cou.setCredit(Integer.parseInt(request.getParameter("credit")));
 			cou.setMaxNum(Integer.parseInt(request.getParameter("max_num")));
 			
-			SqlSessionFactory sqlSessionFactory = null;
-			int result = -1;
-			try {
-	            Reader reader = Resources.getResourceAsReader("mybatis-config.xml");
-	            sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	        }
-			SqlSession sqlSession = null;        
-			try {
-				sqlSession = sqlSessionFactory.openSession();
-				CourseMapper courseMapper = sqlSession.getMapper(CourseMapper.class);
-				result = courseMapper.addCourse(cou);
-				sqlSession.commit();
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	        } finally {            
-	        	if (sqlSession != null) {
-	                sqlSession.close();
-	            }
-	        }
-			
+			CourseServiceImpl cService = new CourseServiceImpl();
+
 			String info = "";
-			if(result == 1){
+			if(cService.addCourse(cou)){
 				info = "添加成功！";
 			} else {
 				info = "添加失败课程id冲突！";

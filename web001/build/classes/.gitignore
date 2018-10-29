@@ -5,3 +5,5 @@
 /mybatis-config.xml
 /service/
 /ation/
+/action/
+/GetSqlSessionFactory/
