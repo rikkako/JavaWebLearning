@@ -2,8 +2,8 @@ package model;
 
 public class User {
 	private String userName;
-	private int    userId;
-	private String    password;
+	private String   userId;
+	private String password;
 	private int    userType;
 	
 	
@@ -15,10 +15,10 @@ public class User {
 		this.password = password;
 	}
 	
-	public int getUserId() {
+	public String getUserId() {
 		return userId;
 	}
-	public void setUserId(int userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 	

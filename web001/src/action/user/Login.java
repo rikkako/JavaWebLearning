@@ -42,40 +42,33 @@ public class Login extends HttpServlet {
 		User user = new User();
 		String userid = request.getParameter("userid");
 		String password = request.getParameter("password");
+		int usertype = Integer.valueOf(request.getParameter("usertype"));
+		if( usertype == 0){
+			request.setAttribute("errorinfo", "请选择用户类型");         
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+		}
 		if( userid == null || "".equals(userid)){
 			request.setAttribute("errorinfo", "用户id不能为空");         
-			request.getRequestDispatcher("adm_editcourse.jsp").forward(request, response);
+			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
 		if( password == null || "".equals(password)){
 			request.setAttribute("errorinfo", "密码不能为空");         
-			request.getRequestDispatcher("adm_editcourse.jsp").forward(request, response);
+			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
 		
 		UserServiceImpl userservice = new UserServiceImpl();
-		user.setUserId(Integer.valueOf(request.getParameter("userid")));
+		user.setUserId(request.getParameter("userid"));
 		user.setPassword(request.getParameter("password"));
 		user.setUserType(Integer.valueOf(request.getParameter("usertype")));
-		StringBuffer info = new StringBuffer();
-		if(userservice.login()){
-			info.append("登陆成功");
-			int type = Integer.valueOf(request.getParameter("usertype"));
-			switch(type){
-			case 1:
-				request.getSession().setAttribute("user", user);
-				response.sendRedirect("administrator.jsp");
-				break;
-			case 2:
-				request.getSession().setAttribute("user", user);
-				response.sendRedirect("administrator.jsp");
-			case 3:
-				request.getSession().setAttribute("user", user);
-				response.sendRedirect("administrator.jsp");
-				
-			}
+		String info = "";
+		if(userservice.login(user) == 1){
+			request.getSession().setAttribute("username", userservice.findName(userid));
+			request.getSession().setAttribute("usertype", usertype);
+			response.sendRedirect("administrator.jsp");
 		}else{
-			info.append("登陆失败");
+			info = "登陆失败";
 			request.setAttribute("info", info);
-			request.getRequestDispatcher("login.jsp").forward(request, response);
+			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
 		
 		
