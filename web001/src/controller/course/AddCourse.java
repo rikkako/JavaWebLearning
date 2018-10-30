@@ -1,4 +1,4 @@
-package action.course;
+package controller.course;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -11,16 +11,16 @@ import model.Course;
 import service.CourseServiceImpl;
 
 /**
- * Servlet implementation class editCourse
+ * Servlet implementation class addCourseServlet
  */
-@WebServlet("/UpdateCourse")
-public class UpdateCourse extends HttpServlet {
+@WebServlet("/AddCourse")
+public class AddCourse extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UpdateCourse() {
+    public AddCourse() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,19 +38,16 @@ public class UpdateCourse extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
 		request.setCharacterEncoding("utf-8");
-		Course cou = new Course(); 
+		Course cou = new Course();   
 		if(request.getParameter("course")=="" || request.getParameter("course_id") == "" || request.getParameter("teacher")==""
 				|| request.getParameter("classroom")=="" ||request.getParameter("lesson")=="" || request.getParameter("credit")==""
 				|| request.getParameter("max_num")=="" ){
-			request.setAttribute("adderror", "课程信息不能为空");          
-			request.getRequestDispatcher("adm_editcourse.jsp").forward(request, response);
+			request.setAttribute("adderror", "添加失败，课程信息不能为空");       
+			request.getRequestDispatcher("adm_addcourse.jsp").forward(request, response);
 		}
 		else{
-		
-//			int id = Integer.parseInt(request.getParameter("course_id"));
-			CourseServiceImpl couservice = new CourseServiceImpl();
+			//通过request获取form表单中的输入数据
 			cou.setCourseName(request.getParameter("course"));
 			cou.setCourseId(Integer.parseInt(request.getParameter("course_id")));
 			cou.setTeacher(request.getParameter("teacher"));
@@ -58,15 +55,19 @@ public class UpdateCourse extends HttpServlet {
 			cou.setLesson(Integer.parseInt(request.getParameter("lesson")));
 			cou.setCredit(Integer.parseInt(request.getParameter("credit")));
 			cou.setMaxNum(Integer.parseInt(request.getParameter("max_num")));
+			
+			CourseServiceImpl cService = new CourseServiceImpl();
+
 			String info = "";
-			if(couservice.updateCourse(cou)){
-				info = "修改成功！";
+			if(cService.addCourse(cou)){
+				info = "添加成功！";
 			} else {
-				info = "修改失败！";
+				info = "添加失败课程id冲突！";
 			}
 			request.setAttribute("info", info);
-			request.getRequestDispatcher("FindCourse").forward(request, response);
+			request.getRequestDispatcher("adm_addcourse.jsp").forward(request, response);
 		}
+		
 	}
 
 }

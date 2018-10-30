@@ -1,4 +1,4 @@
-package action.course;
+package controller.user;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -6,20 +6,19 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import service.CourseServiceImpl;
+import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class EditPage
+ * Servlet implementation class Logout
  */
-@WebServlet("/EditPage")
-public class EditPage extends HttpServlet {
+@WebServlet("/Logout")
+public class Logout extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EditPage() {
+    public Logout() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,7 +28,6 @@ public class EditPage extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
 		doPost(request, response);
 	}
 
@@ -38,13 +36,14 @@ public class EditPage extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		int id = Integer.valueOf(request.getParameter("id"));
-		CourseServiceImpl couservice = new CourseServiceImpl();    
-		request.setAttribute("course",couservice.findCourseById(id));	//获取学生信息，添加到request域中
-
-		request.getRequestDispatcher("adm_editcourse.jsp").forward(request, response); //转发到adm_findcourse.jsp
-
+		HttpSession session = request.getSession(false);//防止创建Session  
+        if(session == null){  
+            response.sendRedirect("index.jsp");  
+            return;  
+        }  
+          
+        session.removeAttribute("username");  
+        response.sendRedirect("index.jsp");  
 	}
 
 }

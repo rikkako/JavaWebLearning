@@ -6,9 +6,9 @@ import model.Course;
 
 
 public interface CourseMapper {
-	public int addCourse(Course course);
-	public List<Course> findCourseList();
-	public int deleteCourseById(int id);
-	public int updateCourse(Course course); 
-	public Course findCourseById(int id);
+	int addCourse(Course course);
+	List<Course> findCourseList();
+	int deleteCourseById(int id);
+	int updateCourse(Course course); 
+	Course findCourseById(int id);
 }
